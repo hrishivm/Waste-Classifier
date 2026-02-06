@@ -8,6 +8,7 @@
   This project addresses the challenge of automated waste sorting. Using the FastAI framework and Progressive 
   Resizing (training first at 224px, then refining at 448px), the model achieves high accuracy on complex 
   materials like crushed plastics and electronic components.
+  
     * Architecture: ConvNeXt-Tiny
     * Technique: Progressive Resizing (224px -> 448px)
     * Optimizer: Mixed Precision (FP16) for RTX 3050 optimization
@@ -15,6 +16,7 @@
 ## 📈 Performance & Results
 
   The model was trained for 3 epochs at 224px and further refined for 3 epochs at 448px.
+  
     * Final Accuracy: 97.47%
 
 ## 📊 Dataset Setup
@@ -26,10 +28,11 @@
   ```
   text
   /Waste_Classifier
-  ├── Train/ (HDPE, PET, E-waste)
-  └── Test/  (HDPE, PET, E-waste)
+  ├── Train/ (Aluminium, HDPE, PET, E-waste)
+  └── Test/  (Aluminium, HDPE, PET, E-waste)
   ```
-  *"This dataset is a curated collection of images sourced from Kaggle (Waste Classification Dataset) and Roboflow (Plastic Sort). All rights belong to the original creators."
+
+  * This dataset is a curated collection of images sourced from Kaggle (Waste Classification Dataset) and Roboflow (Plastic Sort). All rights belong to the original creators.
   
 ## 🛠️ Installation & Usage
 
