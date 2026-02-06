@@ -33,25 +33,25 @@
 ## 🛠️ Installation & Usage
 
   1. Clone & Environment
-    ```bash
-    git clone https://github.com/hrishivm/Waste-Classifier.git
-    cd Waste-Classifier
-    python -m venv venv
-    source venv\Scripts\activate
-    ```
+  ```bash
+  git clone https://github.com/hrishivm/Waste-Classifier.git
+  cd Waste-Classifier
+  python -m venv venv
+  source venv\Scripts\activate
+  ```
   2. Install Dependencies
-    ```bash
-    pip install -r requirements.txt
-    ```
+  ```bash
+  pip install -r requirements.txt
+  ```
   3. Run Inference To test a single image using the modular inference.py script:
-    ```bash
-    python app.py
-    ```
+  ```bash
+  python app.py
+  ```
 
 ## 📂 Project Structure
 
-  ai_model.ipynb: The complete training pipeline (Stages 1 & 2).
-  inference.py: A reusable Python class for model deployment.
-  app.py: Interface for testing images.
-  requirements.txt: List of required Python libraries.
-  .gitignore: Configured to exclude bulky environment files and model weights.
+  * ai_model.ipynb: The complete training pipeline (Stages 1 & 2).
+  * inference.py: A reusable Python class for model deployment.
+  * app.py: Interface for testing images.
+  * requirements.txt: List of required Python libraries.
+  * .gitignore: Configured to exclude bulky environment files and model weights.
