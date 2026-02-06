@@ -1,7 +1,7 @@
 
 # ♻️Waste Classification AI
 
-  A Deep Learning project to classify E-waste, HDPE, and PET plastics using ConvNeXt-Tiny.
+  A Deep Learning project to classify E-waste, Aluminium, HDPE, and PET plastics using ConvNeXt-Tiny.
 
 ## 🚀 Project Overview
 
