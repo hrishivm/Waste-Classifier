@@ -23,11 +23,12 @@
   1. Download: https://drive.google.com/file/d/1ktB-7vzbcAc5efoqpE6zTpd13vQ3HklH/view?usp=sharing
   2. Extract: Place the Train/ and Test/ folders in the root directory.
   3. Structure:
-    ```text
-    /Waste_Classifier
-    ├── Train/ (HDPE, PET, E-waste)
-    └── Test/  (HDPE, PET, E-waste)
-     ```
+  ```
+  text
+  /Waste_Classifier
+  ├── Train/ (HDPE, PET, E-waste)
+  └── Test/  (HDPE, PET, E-waste)
+  ```
   *"This dataset is a curated collection of images sourced from Kaggle (Waste Classification Dataset) and Roboflow (Plastic Sort). All rights belong to the original creators."
   
 ## 🛠️ Installation & Usage
