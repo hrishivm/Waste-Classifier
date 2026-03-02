@@ -1,12 +1,12 @@
 import os
 from inference import WasteClassifier # Import your class
 
-clf = WasteClassifier('waste_model_448.pkl')
+clf = WasteClassifier('waste_model_448_v2.pkl')
 
 def main():
     print("--- Waste Classification CLI ---")
-    test_img = r"D:\Desktop\stain_1.jpg"
-    
+    test_img = r"D:\Desktop\Samples\Correct\metal_1.jpg"
+
     if os.path.exists(test_img):
         result = clf.predict(test_img)
         print(f"Result: {result}")
