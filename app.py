@@ -22,5 +22,5 @@ class WasteClassifier:
 
 if __name__ == "__main__":
     model = WasteClassifier()
-    image = "D:\Desktop\waste-classifier\Samples_v3\Images\correct_steel_0.808.jpg"
+    image = "D:\Desktop\waste-classifier\Samples_v3\Images\wrong_charger_0.581.jpg"
     model.predict(image)
