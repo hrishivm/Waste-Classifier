@@ -7,3 +7,4 @@ torch==2.5.1 --index-url https://download.pytorch.org/whl/cpu
 torchvision==0.20.1 --index-url https://download.pytorch.org/whl/cpu
 fastcore==1.12.31
 timm==1.0.26
+IPython
