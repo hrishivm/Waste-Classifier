@@ -4,7 +4,13 @@ import uvicorn
 import io
 from PIL import Image
 import os
+import pathlib
+import platform
 
+# Fix WindowsPath issue on Linux
+if platform.system() != "Windows":
+    pathlib.WindowsPath = pathlib.PosixPath
+    
 app = FastAPI(title="Waste Classifier API")
 
 # Load model
