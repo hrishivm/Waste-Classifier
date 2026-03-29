@@ -1,4 +1,5 @@
 from fastai.vision.all import *
+import os
 
 class WasteClassifier:
     def __init__(self):
@@ -22,5 +23,5 @@ class WasteClassifier:
 
 if __name__ == "__main__":
     model = WasteClassifier()
-    image = "D:\Desktop\waste-classifier\Samples_v3\Images\wrong_charger_0.581.jpg"
+    image = os.path.join(os.getcwd(), "Samples_v3\w\wrong_charger_0.581.jpg")
     model.predict(image)

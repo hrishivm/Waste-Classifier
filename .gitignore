@@ -8,4 +8,5 @@ Include/
 Lib/
 Scripts/
 share/
-pyvenv.cfg
+pyvenv.
+Samples_v3/
