@@ -4,6 +4,12 @@ FROM python:3.11-slim
 # Set working directory
 WORKDIR /app
 
+RUN apt-get update && apt-get install -y \
+    curl \
+    libglib2.0-0 \
+    libgl1 \
+    && rm -rf /var/lib/apt/lists/*
+
 # Copy requirements file first to leverage Docker cache
 COPY requirements_docker.txt requirements.txt
 
