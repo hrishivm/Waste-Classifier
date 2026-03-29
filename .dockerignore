@@ -1,0 +1,11 @@
+__pycache__
+.venv
+.git
+.gitignore
+.ipynb_checkpoints
+ai_model.ipynb
+Samples_v3
+README.md
+app.py
+*.pkl
+!waste_classifier_v3.pkl
