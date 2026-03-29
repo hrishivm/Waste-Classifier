@@ -1,29 +1,38 @@
-# Use official Python 3.11 slim image
-FROM python:3.11-slim
+# -------- Base image (small & stable) --------
+FROM python:3.11-slim-bookworm
 
-# Set working directory
+# -------- Environment settings --------
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    PIP_NO_CACHE_DIR=1 \
+    PIP_DISABLE_PIP_VERSION_CHECK=1
+
+# -------- Set workdir --------
 WORKDIR /app
 
-RUN apt-get update && apt-get install -y \
-    curl \
+# -------- Install system dependencies (minimal) --------
+RUN apt-get update && apt-get install -y --no-install-recommends \
     libglib2.0-0 \
     libgl1 \
+    curl \
+    && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-# Copy requirements file first to leverage Docker cache
-COPY requirements_docker.txt requirements.txt
+# -------- Install Python dependencies (layer caching optimized) --------
+COPY requirements_docker.txt .
 
-# Install dependencies
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --upgrade pip \
+    && pip install -r requirements_docker.txt
 
-# Download model from Hugging Face
-RUN curl -L https://huggingface.co/abhiramAnanathu/Repay-ai/resolve/main/waste_classifier_v3.pkl -o waste_classifier_v3.pkl
-
-# Copy the application code
+# -------- Copy only required app files --------
 COPY main.py .
 
-# Expose the API port
+# -------- Use non-root user (best practice) --------
+RUN useradd -m appuser
+USER appuser
+
+# -------- Expose port --------
 EXPOSE 8000
 
-# Command to run the FastAPI app
+# -------- Run app --------
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
