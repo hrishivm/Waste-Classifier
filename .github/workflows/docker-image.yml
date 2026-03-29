@@ -1,0 +1,42 @@
+name: Build and Push Docker to ECR
+
+on:
+  push:
+    branches:
+      - main  # or your branch
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout code
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      # Step 2: Configure AWS credentials
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      # Step 3: Login to ECR
+      - name: Login to Amazon ECR
+        uses: aws-actions/amazon-ecr-login@v1
+
+      # Step 4: Build Docker image
+      - name: Build Docker image
+        run: |
+          docker build -t waste-classifier .
+
+      # Step 5: Tag Docker image for ECR
+      - name: Tag Docker image
+        run: |
+          docker tag waste-classifier:latest ${{ secrets.ECR_REPOSITORY }}:latest
+
+      # Step 6: Push Docker image to ECR
+      - name: Push Docker image
+        run: |
+          docker push ${{ secrets.ECR_REPOSITORY }}:latest
