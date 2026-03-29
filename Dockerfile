@@ -4,23 +4,24 @@ FROM python:3.11-slim
 # Set working directory
 WORKDIR /app
 
-# Install system dependencies for image processing (OpenCV, etc.)
+# Install system dependencies
 RUN apt-get update && apt-get install -y \
     libglib2.0-0 \
     libgl1-mesa-glx \
+    curl \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy requirements file first to leverage Docker cache
 COPY requirements_docker.txt requirements.txt
 
 # Install dependencies
-# Note: Using the provided requirements.txt might try to install CUDA versions of torch.
-# If you want CPU-only, remove the --index-url and specify torch versions.
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy the application code and model
+# Download model from Hugging Face
+RUN curl -L https://huggingface.co/abhiramAnanathu/Repay-ai/resolve/main/waste_classifier_v3.pkl -o waste_classifier_v3.pkl
+
+# Copy the application code
 COPY main.py .
-COPY waste_classifier_v3.pkl .
 
 # Expose the API port
 EXPOSE 8000
