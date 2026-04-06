@@ -1,27 +1,61 @@
+from fastapi import FastAPI, File, UploadFile
 from fastai.vision.all import *
+from fastapi.middleware.cors import CORSMiddleware
+import uvicorn
+import io
+from PIL import Image
 import os
 
-class WasteClassifier:
-    def __init__(self):
-        self.learn = load_learner('waste_classifier_v3.pkl') 
+app = FastAPI(title="Waste Classifier API")
+app.add_middleware(
+    CORSMiddleware,
+    allow_origin_regex="https://.*\.vercel\.app",
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
-    def predict(self, image):
-        pred, pred_idx, probs = self.learn.predict(image)
-        check = self.filter(probs[pred_idx])
+# Load model
+model_path = 'waste_classifier_v3.pkl'
+try:
+    learn = load_learner(model_path)
+except Exception as e:
+    print(f"Error loading model: {e}")
+    learn = None
 
-        print("\n\n---------------RESULT---------------")
-        if check == True:
-            print(f"Given image is {pred} with confidence {probs[pred_idx]:.4f}.")
-        else:
-            print(f"Model is not confident enough, need manual checking!")
+def filter_confidence(num):
+    return num > 0.75
 
-    def filter(self, num):
-        if num > 0.7500:
-            return True
-        return False
+@app.get("/")
+async def root():
+    return {"message": "Waste Classifier API is running"}
 
+@app.post("/predict")
+async def predict(file: UploadFile = File(...)):
+    if learn is None:
+        return {"error": "Model not loaded"}
+    
+    # Read image
+    contents = await file.read()
+    img = Image.open(io.BytesIO(contents)).convert('RGB')
+    
+    # Fastai's predict works with PIL images if they are converted to fastai format or handled correctly
+    # Alternatively, we can save temporarily or use the fastai way
+    # For fastai learn.predict(img) usually works if img is a PIL image
+    
+    pred, pred_idx, probs = learn.predict(img)
+    confidence = float(probs[pred_idx])
+    
+    is_confident = filter_confidence(confidence)
+    
+    print("\n\n---------------RESULT---------------")
+    print(f"Given image is {pred} with confidence {confidence:.4f}.") if is_confident else print("Model is not confident enough, need manual checking!")
+    return {
+        "prediction": str(pred),
+        "confidence": confidence,
+        "is_confident": is_confident,
+        "message": f"Given image is {pred} with confidence {confidence:.4f}." if is_confident else "Model is not confident enough, need manual checking!"
+    }
 
 if __name__ == "__main__":
-    model = WasteClassifier()
-    image = os.path.join(os.getcwd(), "Samples_v3\w\wrong_charger_0.581.jpg")
-    model.predict(image)
+    uvicorn.run(app, host="0.0.0.0", port=3030)

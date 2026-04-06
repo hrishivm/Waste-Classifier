@@ -1,0 +1,58 @@
+(.venv) PS D:\Waste-Classifier> python app.py
+D:\Waste-Classifier\.venv\Lib\site-packages\fastai\learner.py:455: UserWarning: load_learner` uses Python's insecure pickle module, which can execute malicious arbitrary code when loading. Only load files you trust.
+If you only need to load model weights and optimizer state, use the safe `Learner.load` instead.
+  warn("load_learner` uses Python's insecure pickle module, which can execute malicious arbitrary code when loading. Only load files you trust.\nIf you only need to load model weights and optimizer state, use the safe `Learner.load` instead.")
+INFO:     Started server process [11864]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:3030 (Press CTRL+C to quit)
+                                                                                                                   
+
+---------------RESULT---------------
+Given image is Plastic_HDPE with confidence 0.9796.
+INFO:     106.205.161.32:0 - "POST /predict HTTP/1.1" 200 OK
+                                                                                                                   
+
+---------------RESULT---------------
+Given image is Plastic_PET with confidence 0.8645.
+INFO:     106.205.161.32:0 - "POST /predict HTTP/1.1" 200 OK
+                                                                                                                   
+
+---------------RESULT---------------
+Model is not confident enough, need manual checking!
+INFO:     106.205.161.32:0 - "POST /predict HTTP/1.1" 200 OK
+                                                                                                                   
+
+---------------RESULT---------------
+Given image is Plastic_PET with confidence 0.9289.
+INFO:     106.205.161.32:0 - "POST /predict HTTP/1.1" 200 OK
+                                                                                                                   
+
+---------------RESULT---------------
+Model is not confident enough, need manual checking!
+INFO:     106.205.161.32:0 - "POST /predict HTTP/1.1" 200 OK
+                                                                                                                   
+
+---------------RESULT---------------
+Given image is E_waste with confidence 0.9951.
+INFO:     106.205.161.32:0 - "POST /predict HTTP/1.1" 200 OK
+                                                                                                                   
+
+---------------RESULT---------------
+Given image is E_waste with confidence 0.9951.
+INFO:     106.205.161.32:0 - "POST /predict HTTP/1.1" 200 OK
+                                                                                                                   
+
+---------------RESULT---------------
+Model is not confident enough, need manual checking!
+INFO:     106.205.161.32:0 - "POST /predict HTTP/1.1" 200 OK
+                                                                                                                   
+
+---------------RESULT---------------
+Given image is E_waste with confidence 0.9795.
+INFO:     106.205.161.32:0 - "POST /predict HTTP/1.1" 200 OK
+                                                                                                                                 
+
+---------------RESULT---------------
+Given image is E_waste with confidence 0.9654.
+INFO:     106.205.161.32:0 - "POST /predict HTTP/1.1" 200 OK
