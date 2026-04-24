@@ -1,7 +1,7 @@
 
 # ♻️Waste Classification AI
 
-  A Deep Learning project to classify E-waste, Aluminium, HDPE, and PET plastics using ConvNeXt-Tiny.
+  A Deep Learning project to classify E-waste, Aluminium, HDPE, and PET plastics using ConvNeXt-Small.
 
 ## 🚀 Project Overview
 
@@ -22,14 +22,14 @@
 ## 📊 Dataset Setup
 
   Due to GitHub's file size limits, the dataset is hosted externally.
-  1. Download: https://drive.google.com/file/d/1ktB-7vzbcAc5efoqpE6zTpd13vQ3HklH/view?usp=sharing
+  1. Download: https://drive.google.com/file/d/10tMS88JR4SaLYfm4F262ixtwhhyaS5q_/view?usp=sharing
   2. Extract: Place the Train/ and Test/ folders in the root directory.
   3. Structure:
   ```
   text
   /Waste_Classifier
-  ├── Train/ (Aluminium, HDPE, PET, E-waste)
-  └── Test/  (Aluminium, HDPE, PET, E-waste)
+  ├── Train/ (Paper, HDPE, PET, E-waste)
+  └── Test/  (Paper, HDPE, PET, E-waste)
   ```
 
   * This dataset is a curated collection of images sourced from Kaggle (Waste Classification Dataset) and Roboflow (Plastic Sort). All rights belong to the original creators.
